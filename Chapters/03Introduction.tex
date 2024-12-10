@@ -2,15 +2,81 @@
 % The subsections written are only suggestions, to display how sections and subsections may look for your thesis
 
 
-\section{Motivation}
+% This chapter introduces the motivation, background, and context for the project, highlighting its significance and outlining the problem statement. It also presents the research questions and objectives.
 
 
+\section{Background}
 
-\section{Project Description}
+The project description for this project comes from the challenges of docking autonomous vessels. Traditionally, docking is a task performed manually by skilled helmsmen. While automatic systems exist, they often struggle to match the precision and efficiency of human operators, especially when dealing with environmental forces such as wind, waves, and currents. These systems tend to waste energy by working against these forces instead of utilizing them effectively.\\
+
+\noindent While the original problem description focused on improving automatic docking systems, I decided to shift the focus toward exploring machine learning (ML), artificial intelligence (AI), and computer vision (CV). Over the past four years, I have taken several courses in AI and ML, which I found both exciting and fun. This project allows me to build on that knowledge, and to get hands-on experience with CV.\\
+
+\noindent The project is in collaboration with DNV's ReVolt concept. ReVolt is an unmanned, zero-emission vessel designed for short-distance coastal transport. DNVs revolt project provides a simulator and a 1:20 scale model which was created in 2014, and has been used for testing and research in autonomy and situational awareness.
 
 
-Is synthetic data sufficient to train a computer vision system for accurate boat docking, or is real-world data necessary to achieve optimal performance?
+\section{Literature Study / Previous Work}
 
-Can AI tools help close the domain gap between synthetic and real-world data?
+There has been a lot of research into both object detection in maritime environments and synthetic images. Below are some studies that are relevant to this project.
+
+\subsection{Object Detection in Maritime Environments}
+
+A good example of object detection in a harbor environment is the study on an autonomous electric ferry operating in Trondheim, Norway, on Nidelva River \cite{NTNUFerry}. This project used infrared images because they work better in low-light conditions and can detect objects from farther away. The study showed great results for detecting small boats and sailboats, with a 100\% detection rate for moving boats when their pixel area was above 1,800. \\
+
+\noindent However, the main challenge was finding enough data for training. The project used datasets from sources like Hurtigruten and Fosenkaia, but these were not enough. They had to collect their own images with a LiDAR camera. Since these images were not labeled, they had to spend time manually labeling them using a tool called CVAT.\\
+
+\noindent Another premade dataset is the Singapore Maritime Dataset, created by Dilip K. Prasad at UiT The Arctic University of Norway \cite{SingaporeMaritimeDataset}. It contains videos taken from fixed platforms and moving vessels in Singapore. The problem is that the dataset mainly includes larger ships, like cargo and bulk vessels, which are not typical for harbor docking situations.
+
+\subsection{The Performance of Synthetic Images}
+
+Synthetic images have great potential for training computer vision models. The Unity Perception Package study showed how synthetic images can be used for tasks like detecting shopping carts \cite{borkman2021unityperceptiongeneratesynthetic}. The models which was only trained on synthetic data performed slightly worse than those trained on real data. However, combining the both real and synthetic data led to much better results. \\
+
+\noindent In the book \cite{nikolenko2021synthetic}, Sergey I. Nikolenko explains cases where synthetic datasets did even better than real ones:
+\begin{itemize}
+    \item \textbf{Object Detection}: A study by Hinterstoisser et al. \cite{hinterstoisser2017pretrainedimagefeaturessynthetic} showed that a model trained on synthetic data performed better than one trained on a real dataset with 2,000 images for detecting small objects. 
+    \item \textbf{Gaze Estimation}: Wood et al. \cite{wood} found that a synthetic dataset with 1 million images of eyes gave better results than a real dataset with 214,000 images, thanks to the greater variety in synthetic data. 
+    \item \textbf{Autonomous Driving}: A Faster R-CNN model trained on 50,000--200,000 synthetic images outperformed a model trained on just 2,975 real images for object detection in driving \cite{r-cnn}.
+\end{itemize}
+
+\noindent Even though synthetic data has many benefits, it is not always better than real data. Sometimes, synthetic images can be too "perfect," which can cause overfitting. If they are unrealistic, they might not work well in real-life situations. It is important to balance how realistic and varied the synthetic data is for the best results \cite{nikolenko2021synthetic}.
+
+
+\section{Problem Description and Research Focus}
+
+Building effective computer vision models for maritime environments is a challenging task. While previous studies show promising results with synthetic data, many of these studies also highlight the difficulties of collecting real-world data. For maritime environments, like harbors, capturing enough diverse and high-quality data is difficult. It may require expensive equipment like the ferry project \cite{NTNUFerry}, such as LiDAR cameras, and time-consuming manual labeling processes. This is where synthetic data can provide a potential solution. \\
+
+\noindent Synthetic data allows for generating diverse datasets quickly under controlled conditions, making it a valuable resource for training computer vision models \cite{nikolenko2021synthetic}. With these advantages, this project focuses on creating and testing synthetic data for harbor environments. The goal is to explore whether synthetic data can replace or enhance real-world data in developing reliable models for tasks like object detection and navigation.
+
+
+\subsection{Problem Description}
+The main goal is to create a computer vision model for the ReVolt autonomous vessel in a harbor environment. A computer vision model needs a large and diverse dataset to work well. However, collecting real-world data in different docking situations can be expensive and take a lot of time. Is synthetic data sufficient to train a computer vision model for harbor environment, or is real-world data necessary to achieve acceptable performance? This report focuses on generating synthetic data for training. By creating synthetic images, the aim is to simulate realistic situations that can help train the model.  
+
+\subsection{Research Questions}
+This project will try to answer the following questions:
+\begin{itemize}
+    \item How can synthetic data be made to effectively train a computer vision model for harbor environments?
+    \item How can the gap between synthetic and real-world data be minimized to improve model performance?
+    \item Is synthetic data sufficient to train a computer vision model for harbor environment, or is real-world data necessary to achieve acceptable performance? (future work)
+\end{itemize}
+
+\subsection{Objectives}
+The main objectives of this project are:
+\begin{itemize}
+    \item To create synthetic images for training a computer vision model in a harbor environment.
+    \item To explore techniques that reduce the gap between synthetic and real-world data.
+\end{itemize}
+
 
 \section{Structure of the Report}
+
+The thesis follows the IMRaD model (Introduction, Methods, Results, and Discussion) and is organized as follows:
+
+\begin{itemize} 
+\item \textbf{Introduction:} Covers the challenges of autonomous docking, relevant literature, problem description, research questions, objectives, and report structure. 
+\item \textbf{Theory:} Explores synthetic images, their advantages, labeling techniques, and Unity's Perception package for data generation. 
+\item \textbf{Method:} Details the creation of a virtual environment in Unity, integration of 3D models, randomization techniques, and the use of AI tools. 
+\item \textbf{Results:} Presents the dataset, its diversity, and labeling accuracy, with visual examples of outputs. 
+\item \textbf{Discussion:} Evaluates dataset realism, domain gap challenges, and opportunities for improvement, including asset quality and augmentation. 
+\item \textbf{Conclusions:} Summarizes achievements and future directions.
+\end{itemize}
+
+Appendices include links to the project's GitHub repositories.

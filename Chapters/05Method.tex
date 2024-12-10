@@ -4,41 +4,46 @@ In this chapter, the method for generating synthetic images using Unity, a 3D de
 
 \section{Creating the Virtual Environment}
 Creating an virtual environment in Unity involves designing a scene that simulates real-world conditions. A scene in unity consist of two main components: a camera to capture the scene, and a 3D grid to define the spatial layout. Various objects and elements can be added to the 3D space, such as terrain, water, maritime objects and other 3d models. Additionally, animations can be added to simulate dynamic conditions such as water movement or rain which is important to create a realistic environment. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{Figures/method/environment2.png}
+    \caption{The virtual environment in Unity}
+    \label{fig:environment}
+    
+\end{figure}
  
 \subsection{Terrain}
-Generating terrain in 3D space is a natural starting point for the virtual environment. The Unity \textit{standard asset packages} was used, providing a flat surface as a foundation. This package includes an environmental editor that allows users to manipulate the terrain, adjusting its shape by adding hills and valleys. Additionally, the editor offers options to change the ground type, such as switching from grass to rocks.
+Generating terrain in 3D space is a natural starting point for the virtual environment. The Unity \textit{Standard Asset Package} \cite{unity_standard_assets_installation} was used, providing a flat surface as a foundation. This package includes an environmental editor that allows users to manipulate the terrain, adjusting its shape by adding hills and valleys.
 
 \subsection{Water}
-The water surface was also imported from Unity's \textit{Standard Asset Packages}, which offers a realistic water simulation. This asset provides a flexible water surface that users can adjust in both position and dimensions to fit the scene. The water is animated with small ripples, ensuring it appears dynamic rather than as a still blue surface. However, the \textit{Standard Asset Package} does not support advanced water conditions, such as large waves. Since this simulation focuses on object detection within a harbor environment, where sea conditions are generally calm, this limitation is not a significant issue.
+The water surface was also imported from Unity's \textit{Standard Asset Package} \cite{unity_standard_assets_installation}, which offers a realistic water simulation. This asset provides a flexible water surface that users can adjust in both position and dimensions to fit the scene. The water is animated with small ripples, ensuring it appears dynamic rather than as a still blue surface. However, the \textit{Standard Asset Package} does not support advanced water conditions, such as large waves. Since this simulation focuses on object detection within a harbor environment, where sea conditions are generally calm, this limitation is not a significant issue.
 
 \subsection{Weather}
-To create a realistic environment, there is also important to generate a weather system. \textit{Rain Maker - 2D and 3D Rain Particle System for Unity} was downloaded from Unity asset store and imported the prefab into Unity. This weather system allows for adjustments to rain and fog intensity. Additionally, the rain particles are animated to avoiding repetitive or identical images.
+To create a realistic environment, there is also important to generate a weather system. \textit{Rain Maker - 2D and 3D Rain Particle System for Unity} \cite{unity_rain_maker} was downloaded from Unity asset store and imported the prefab into Unity. This weather system allows for adjustments to rain and fog intensity. Additionally, the rain particles are animated to avoiding repetitive or identical images.
 
 \section{Integrating 3D Models}
-After creating the scene and environment, the next step is to integrate the 3D objects that will appear in the generated images. Since the focus is on harbor docking, so the 3D models should represent common objects found in such environments. Common items include motorboats, sailboats, kayaks, buoys, windsurfers, and other small watercraft. The process involves planning to select the right objects, sourcing the models from various platforms, and integrating them into the scene.
+After creating the scene and environment, the next step is to integrate the 3D objects that will appear in the generated images. Since the focus is on harbor docking, the 3D models should represent common objects found in such environments. Common items include motorboats, sailboats, kayaks, buoys, windsurfers, and other small watercraft. The process involves planning to select the right objects, sourcing the models from various platforms, and integrating them into the scene.
 
 \subsection{Sourcing 3D Models}
 Several platforms offer free and paid 3D models. Free options were more limited in variety and quality, but they were enough to build a scene. Unity supports various file formats for importing 3D models, including 3DS, FBX, DAE, DXF, and OBJ, which made it easier to work with assets from multiple sources. The primary platforms used to find models were:
 \begin{itemize}
-\item \textbf{Unity Asset Store}: A platform with many free and affordable assets, and is also integrated with Unity platform. \cite{UnityAssetStore}
-\item \textbf{CGTrader}: A marketplace that offers a wide selection of high-quality free 3D models.\cite{cgtrader}
-\item \textbf{Sketchfab}: A community-driven platform for uploading, sharing, and discovering 3D models. \cite{sketchfab}
-\item \textbf{DNV}: Internal resources from DNV Wiki on DevAzure were also utilized. While it included some usable models suitable for harbor environments, some where large cargo ships, military frigates, and RMS Queen Elizabeth which is not directly relevant.\cite{dnv_wiki}
+\item \textbf{Unity Asset Store}: A platform with many free and affordable assets, and is also integrated with Unity platform \cite{UnityAssetStore}.
+\item \textbf{CGTrader}: A marketplace that offers a wide selection of high-quality free 3D models \cite{cgtrader}.
+\item \textbf{Sketchfab}: A community-driven platform for uploading, sharing, and discovering 3D models \cite{sketchfab}.
+\item \textbf{DNV}: Internal resources from DNV Wiki on DevAzure were also utilized. While it included some usable models suitable for harbor environments, some where large cargo ships, military frigates, and RMS Queen Elizabeth which is not directly relevant \cite{dnv_wiki}.
 
 \end{itemize}
 
 \subsection{Adding 3D Models to the Environment}
-Once the models were downloaded, they could be added to the Unity scene. The models were added to the project's asset folder and then could be dragged into the scene in the Unity window. Firstly, a background was added with some buildings and a dock, creating a harbor environment. Then, the different 3D objects were placed in front of the camera. The models where then positioned to be fully visible within the frame. The process involved trial and error to ensure that the scene looked natural and objects where visible in the frame.
+Once the models were downloaded, they could be added to the Unity scene. The models were added to the project asset folder and then could be dragged into the scene in the Unity window. Firstly, a background was added with some buildings and a dock, creating a harbor environment. Then, the different 3D objects were placed in front of the camera. The models where then positioned to be fully visible within the frame. The process involved trial and error to ensure that the scene looked natural and objects where visible in the frame.
 
 
 \section{Implementation of Randomizers in Unity}
 After constructing the environment and importing all objects to be rendered, randomizers were implemented using the Unity Perception Package \cite{unity-perception2022}. Following Unity's perception guide \cite{unity-perception2022} and the YouTube tutorial \textit{Creating Randomized Synthetic Images with Unity3d Perception} \cite{secrets_of_apagayo_island_video}, the process involved the following steps:
 
 \begin{itemize} \item \textbf{Create a Scenario}
-The scenario object manages the randomization process and specifies the number of images to generate. It connects the randomizers to the environment, ensuring they work together to create a varied dataset. The scenario runs when the scene is played and coordinates all randomizers in a defined order.\cite{borkman2021unityperceptiongeneratesynthetic} The scenario can easily be added by dragging it from the perception package into the scene. For this project, the scenario was configured to generate 100 images, with parameters such as the number of frames and intervals set in Unity’s interface.
-
-\item \textbf{Create Custom Randomizers}: 
-
+The scenario object manages the randomization process and specifies the number of images to generate. It connects the randomizers to the environment, ensuring they work together to create a varied dataset. The scenario runs when the scene is played and coordinates all randomizers in a defined order \cite{borkman2021unityperceptiongeneratesynthetic}. The scenario can easily be added by dragging it from the perception package into the scene. For this project, the scenario was configured to generate 100 images, with parameters such as the number of frames and intervals set in Unity’s interface.
 
 \item \textbf{Add Randomizers to the Scenario}: Randomizers introduce changes to specific aspects of the scene, such as camera positions, object colors, and lighting conditions. Six randomizers were used: camera, sun angle, color, position, transformation, and weather randomizers. Each randomizer was added to the scenario and configured with parameters to control the range of variation. Most Parameters required trial and error to ensure a balanced dataset. Randomizers could also be linked to objects like the camera, so it could interact with those elements during the randomization process.
 
@@ -50,14 +55,16 @@ The scenario object manages the randomization process and specifies the number o
 \end{itemize}
 
 
-\section{Use of Ai-tools}
+\section{Use of AI Tools in the Project}
 
-\subsection{Literature study}
-Summurize, ask questions
-\subsection{Coding}
-Github copilot to write faster, chatGPT to give ideas
-\subsection{Writing}
-spelling, ideas
+AI tools such as ChatGPT and NotebookLM have become popular for generating content, answering questions, and summarizing information. These tools was used throughout this project improving quality and efficiency. \\
+
+
+\noindent For the literature study, academic articles were found using Google Scholar, a platform that helps finding peer-reviewed articles. Keywords such as "synthetic images," "Unity perception," "CV labeling," and "synthetic dataset performance" was used. Abstracts were then read to find the most interesting articles. NotebookLM, powered by the Gemini AI model, was then used to summarize articles, answer specific questions about them, and link directly to relevant sections of the documents.\\
+
+\noindent AI-assisted tools were also used for coding to improve speed, and error resolution. GitHub Copilot, an AI model designed for programming, was used to generate code, fix errors, and provide suggestions.\\
+
+\noindent In addition, AI tools supported the writing process by enhancing grammar, correcting spelling, and improving clarity. ChatGPT contributed to making the text more polished and easier to read by offering feedback and suggestions for better phrasing.
 
 % \section{generating ir images}
 
