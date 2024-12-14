@@ -6,7 +6,7 @@ Synthetic images are computer-generated images that simulate real-world scenes o
 Deep learning models need a lot of data to work well, and as they evolve, the need for large datasets keeps growing \cite{10.1145/3042064, nikolenko2021synthetic}. Synthetic data can help meet this demand and provides a solution with several advantages.
  
 \subsection{Customization}
-One of the key benefits of synthetic data is customization. Synthetic images allow developers to create and change environments to meet specific needs. A scene can include various objects, environments, and camera setups. All can be adjusted to match the requirements of a particular application. Synthetic image generation can construct diverse and complex scenes, and recreate scenarios that would be difficult to capture in the real world. This ability to design scenes to match an environment removes the need to rely on real-world data collection. The dataset can then contain the exact conditions and variations needed to train a model effectively \cite{jimaging8110310, rajpura2017objectdetectionusingdeep}.
+One of the key benefits of synthetic data is customization. Synthetic images allow developers to create and change environments to meet specific needs. A scene can include various objects, environments, and camera setups. All can be adjusted to match the requirements of a particular application. Synthetic image generation can construct diverse and complex scenes, and recreate scenarios that would be difficult to capture in the real world. The dataset can then contain the exact conditions and variations needed to train a model effectively \cite{jimaging8110310, rajpura2017objectdetectionusingdeep}.
 
 \subsection{Ethics}
 Another big benefit is ethics. Synthetic data solves privacy problems because it does not use real information. For example, in face recognition tasks, using synthetic faces eliminates the need to collect photos of real people, avoiding privacy concerns and consent issues. Similarly, in medical applications, synthetic data can replace real patient data, protecting privacy while still providing useful training material for AI systems. This is especially important in healthcare, where patient confidentiality is critical, and real-world datasets may be small or hard to share across organizations \cite{jimaging8110310}.
@@ -16,11 +16,11 @@ Randomization in synthetic data means adding variety to the dataset. It is impor
 
 \noindent Compared to manually collecting real images, randomization allows for the creation of an almost unlimited variety of scenarios in a short amount of time. With real-world data, obtaining different perspectives or environmental conditions might require extensive setup or access to rare situations, making synthetic data and randomization more efficient and scalable \cite{borkman2021unityperceptiongeneratesynthetic}. \\
 
-\noindent With synthetic data, randomization can be applied in many ways. It can be used to randomly change the objects in a scene through transformations, such as rotations, scaling, or color. The background and environment can also be changed, including lighting, weather, or the scene layout. Additionally, randomization can be applied to the camera settings, such as adjusting the position, tilt, or angle, to generate a variety of perspectives \cite{borkman2021unityperceptiongeneratesynthetic}.\\
+\noindent Synthetic data allows for various types of randomization. Objects in a scene can be change through transformations like rotation, scaling, or color. Additionally, the background and environment can be modified, including factors such as weather, and scene layout. Additionally, randomization can be applied to the camera settings, such as adjusting the position, tilt, or angle, to generate a variety of perspectives \cite{borkman2021unityperceptiongeneratesynthetic}.\\
 
 \noindent This flexibility allows for the automatic generation of unlimited, diverse training data without manually changing each scene. Randomization scripts make it easier and faster to create a wide range of scenarios, increasing the robustness of the computer vision model.\\
 
-\noindent Further details on the implementation of randomization in synthetic data generation will be explained in the Theory: Unity, and Method chapter.
+\noindent Further details on the implementation of randomization in synthetic data generation will be explained in \ref{section:Implementation of Randomizers in Unity} and \ref{section:Integrated Randomizers}.
 
 
 \section{Image Labeling}
@@ -28,35 +28,28 @@ Image labeling is important in computer vision because it helps models understan
 
 \noindent Labeling involves creating another image or annotation that defines where the object is located in the original training image. It works like an answer, giving the model the correct outputs to learn in training. During training, the model is given both the images and their labels. The model compares its predictions with the labeled data and makes adjustments to improve its accuracy. Over time and iterations, the model learns how to identify and classify objects in new images based on the labeled examples \cite{Labelling}.
 
+
 \subsection{Labeling Methods}
 
 There are different ways to label objects in images, depending on the level of detail needed. Two common methods are bounding boxes and segmentation.\\
 
-\noindent Bounding boxes use rectangles to highlight the location of objects, providing a simple and effective way to represent their positions. This method works well for tasks requiring only rough localization but does not capture precise shapes or boundaries.\\
+\noindent Bounding boxes, as shown in Figure~\ref{fig:image2}, use rectangular regions to indicate the locations of objects. This method is simple and effective for tasks requiring approximate localization but does not provide detailed information about shapes or boundaries.\
 
-\noindent Segmentation in computer vision assigns a label to each pixel in an image, separating objects from their surroundings. This method provides detailed boundary information by dividing an image into regions, often visualized with unique colors or patterns for different objects. Unlike bounding boxes, segmentation captures the exact shape and details of objects, offering a pixel-level understanding of the image \cite{labelingMethods}.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{Figures/rgb_2.png}
-    \caption{Original image}
-    \label{fig:image1}
-\end{figure}
+\noindent Segmentation, illustrated in Figure~\ref{fig:image3}, assigns a label to each pixel in an image, distinguishing objects from their surroundings. This method offers detailed boundary information by dividing the image into regions, often represented with unique colors or patterns for different objects. Unlike bounding boxes, segmentation captures the exact shapes and fine details of objects, enabling a pixel-level understanding of the image \cite{labelingMethods}.\
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/boundingbox.png}
-    \caption{Bounding boxes}
+    \caption{Illustration of bounding boxes, with rectangular regions used to localize objects.}
     \label{fig:image2}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/segmentation_2.png}
-    \caption{Segmentation}
+    \caption{Visualization of segmentation, which divide the image into precise pixel-level regions.}
     \label{fig:image3}
 \end{figure}
-
 
 
 
