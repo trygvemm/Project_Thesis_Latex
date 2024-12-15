@@ -1,5 +1,5 @@
 
-In this chapter, the method for generating synthetic images using Unity is outlined. The process begins with the creation of a virtual environment that simulates realistic maritime conditions, incorporating various elements such as water dynamics and weather conditions. Unity's rendering capabilities can generate a diverse set of images that serve as training data for computer vision models. By adjusting parameters such as lighting, camera angles and object placements, the dataset can reflect real world scenarios. 
+In this chapter, the method for generating synthetic images using Unity is outlined. The process begins with the creation of a virtual environment that simulates realistic maritime conditions, incorporating various elements such as water dynamics and weather conditions. Unity's rendering capabilities can generate a diverse set of images that serve as training data for computer vision models. By adjusting parameters such as lighting, camera angles and object placements, the dataset can reflect real-world scenarios. 
 
 
 \section{Creating the Virtual Environment}
@@ -45,7 +45,7 @@ Once the models were downloaded, they could be added to the Unity scene. The mod
 After constructing the environment and importing all objects to be rendered, randomizers were implemented using the Unity Perception Package \cite{unity-perception2022}. Following Unity's perception guide \cite{unity-perception2022} and the YouTube tutorial \textit{Creating Randomized Synthetic Images with Unity3d Perception} \cite{secrets_of_apagayo_island_video}, the process involved the following steps:
 
 \begin{itemize} \item \textbf{Create a Scenario}
-The scenario object manages the randomization process and specifies the number of images to generate. It connects the randomizers to the environment, ensuring they work together to create a varied dataset. The scenario runs when the scene is played and coordinates all randomizers in a defined order \cite{borkman2021unityperceptiongeneratesynthetic}. The scenario can easily be added by dragging it from the perception package into the scene. For this project, the scenario was configured to generate 100 images, with parameters such as the number of frames and intervals set in Unity’s interface.
+The scenario object manages the randomization process and specifies the number of images to generate. It connects the randomizers to the environment, ensuring they work together to create a varied dataset. The scenario runs when the scene is played and coordinates all randomizers in a defined order \cite{borkman2021unityperceptiongeneratesynthetic}. The scenario can easily be added by dragging it from the Perception Package into the scene. For this project, the scenario was configured to generate 100 images, with parameters such as the number of frames and intervals set in Unity’s interface.
 
 \item \textbf{Add Randomizers to the Scenario}: Randomizers introduce changes to specific aspects of the scene, such as camera positions, object colors and lighting conditions. Six randomizers were used: camera, sun angle, color, position, transformation and weather randomizers. Each randomizer was added to the scenario and configured with parameters to control the range of variation. Most parameters required trial and error to ensure a balanced dataset. Randomizers could also be linked to objects such as the camera, allowing it to interact with those elements during the randomization process.
 
@@ -57,16 +57,15 @@ The scenario object manages the randomization process and specifies the number o
 \end{itemize}
 
 
-\section{Use of AI Tools in the Project}
+\section{Enhancing Efficiency with AI-Assisted Tools}
 
-AI tools such as ChatGPT and NotebookLM have become popular for generating content, answering questions and summarizing information. These tools were used throughout this project improving quality and efficiency. \\
+AI tools such as ChatGPT \cite{OpenAIChatGPT2024} and NotebookLM \cite{GoogleNotebookLM2024} have become popular for generating content, answering questions and summarizing information. These tools were used throughout this project improving quality and efficiency. \\
 
+\noindent For the literature study, academic articles were found using Google Scholar, a platform that helps finding peer-reviewed articles. Keywords such as "synthetic images", "Unity perception", "CV labeling", and "synthetic dataset performance" was used. Abstracts were then read to find the most interesting articles. NotebookLM was then used to summarize articles, answer specific questions about the content, and provide direct links to relevant sections of the documents.\\
 
-\noindent For the literature study, academic articles were found using Google Scholar, a platform that helps finding peer-reviewed articles. Keywords such as "synthetic images," "Unity perception," "CV labeling," and "synthetic dataset performance" was used. Abstracts were then read to find the most interesting articles. NotebookLM was then used to summarize articles, answer specific questions about the content, and provide direct links to relevant sections of the documents.\\
+\noindent AI-assisted tools were also used for coding to improve speed and error resolution. GitHub Copilot \cite{GitHubCopilot2024}, an AI model designed for programming, was used to generate code, fix errors and provide suggestions.\\
 
-\noindent AI-assisted tools were also used for coding to improve speed, and error resolution. GitHub Copilot, an AI model designed for programming, was used to generate code, fix errors and provide suggestions.\\
-
-\noindent In addition, AI tools supported the writing process by enhancing grammar, correcting spelling, and improving clarity. ChatGPT contributed to making the text more polished and easier to read by offering feedback and suggestions for better phrasing.
+\noindent In addition, AI tools supported the writing process by enhancing grammar, correcting spelling and improving clarity. ChatGPT contributed to making the text more polished and easier to read by offering feedback and suggestions for better phrasing.
 
 % \section{generating ir images}
 
