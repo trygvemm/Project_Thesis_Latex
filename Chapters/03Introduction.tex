@@ -7,7 +7,7 @@
 
 \section{Background}
 
-The original project description for this project comes from the challenges of docking autonomous vessels. Traditionally, docking is a task performed manually by skilled helmsmen. While automatic systems exist, they often struggle to match the precision and efficiency of human operators, especially when dealing with environmental forces such as wind, waves, and currents. These systems is not as efficient since they are working against these forces instead of utilizing them effectively. The original problem description focused on improving automatic docking systems, but this project shifts the focus toward exploring machine learning (ML), artificial intelligence (AI), and computer vision (CV).\\
+The original project description for this project comes from the challenges of docking autonomous vessels. Traditionally, docking is a task performed manually by skilled helmsmen. While automatic systems exist, they often struggle to match the precision and efficiency of human operators, especially when dealing with environmental forces such as wind, waves and currents. These systems is not as efficient since they are working against these forces instead of utilizing them effectively. The original problem description focused on improving automatic docking systems, but this project shifts the focus toward exploring machine learning (ML), artificial intelligence (AI) and computer vision (CV).\\
 
 
 \noindent The project is in collaboration with DNV's ReVolt concept. ReVolt is an unmanned, zero-emission vessel designed for short-distance coastal transport. DNVs revolt project provides a simulator and a 1:20 scale model which was created in 2014, and has been used for testing and research in autonomy and situational awareness.
@@ -18,17 +18,17 @@ There has been a lot of research into both object detection in maritime environm
 
 \subsection{Object Detection in Maritime Environments}
 
-A good example of object detection in a harbor environment is the study on an autonomous electric ferry operating in Trondheim, Norway, on Nidelva River \cite{NTNUFerry}. This project used infrared images because they work better in low-light conditions and can detect objects from farther away. The study showed great results for detecting small boats and sailboats, with a 100\% detection rate for moving boats with significant size \\
+In the study by Chen et al. \cite{safety}, the importance of small ship detection in near-shore and river environments is highlighted. Object detection is important in maritime environments, particularly for ensuring navigation safety and preventing collisions, especially in near-shore areas and rivers. These regions have narrow channels, heavy traffic, and many small obstacles, such as boats, kayaks or floating debris. Detecting and tracking these objects is crucial for preventing accidents and maintaining operations for autonomous ships. In these areas can conditions be unpredictable, and traditional methods like radar often fail to reliably detect smaller objects, making video-based deep learning methods an important solution.\\
 
-\noindent However, the main challenge was finding enough data for training. The project used datasets from sources like Hurtigruten and Fosenkaia, but these were not enough. They had to collect their own images with a LiDAR camera. Since these images did not have any descriptions or categorizations to identify objects of interest, they had to spend time manually adding this information to the images using a tool called CVAT.\\
+\noindent Near-shore environments are challenging for object detection due to their complex backgrounds and the small size of many targets, like fishing boats and bamboo rafts, which can move unpredictably. Gathering sufficient training data in these areas is a difficult since real-world examples are limited \cite{safety}.\\
 
+\noindent A noteworthy application of object detection in maritime environments is the study of an autonomous electric ferry operating on the Nidelva River in Trondheim, Norway \cite{NTNUFerry}. This project used infrared images because they work better in low-light conditions and can detect objects from farther away. The study showed great results for detecting small boats and sailboats, with a 100\% detection rate for moving boats. \\
 
-
-\noindent Another premade dataset is the Singapore Maritime Dataset, created by Dilip K. Prasad at UiT The Arctic University of Norway \cite{SingaporeMaritimeDataset}. It contains videos taken from fixed platforms and moving vessels in Singapore. The problem is that the dataset mainly includes larger ships, like cargo and bulk vessels, which are not typical for harbor docking situations.
+\noindent However, the main challenge was finding enough data for training. The project used datasets from Hurtigruten and Fosenkaia, but there were not enough images. They had to collect their own images with a LiDAR camera. Since these images did not have any descriptions or categorizations to identify objects of interest, they had to spend time manually adding this information to the images using a tool called CVAT. This issue is similar to the challenges described by Chen et al. \cite{safety}, highlighting how hard it is to gather enough real-world data for effective model training. This is where approaches like using synthetic images and GANs (see \ref{gan}) can help solve the problem of not having enough data. \\
 
 \subsection{The Performance of Synthetic Images}
 
-Synthetic images have great potential for training computer vision models. The Unity Perception Package study showed how synthetic images can be used for tasks like detecting shopping carts \cite{borkman2021unityperceptiongeneratesynthetic}. The models which was only trained on synthetic data performed slightly worse than those trained on real data. However, combining the both real and synthetic data led to much better results. \\
+Synthetic images are computer-generated visuals that simulate the real world and have significant potential for training computer vision models. The Unity Perception Package study showed how synthetic images can be used for tasks like detecting shopping carts \cite{borkman2021unityperceptiongeneratesynthetic}. The models which was only trained on synthetic data performed slightly worse than those trained on real data. However, combining real and synthetic data led to much better results. \\
 
 \noindent In the book \cite{nikolenko2021synthetic}, Sergey I. Nikolenko explains cases where synthetic datasets did even better than real ones:
 \begin{itemize}
@@ -37,18 +37,17 @@ Synthetic images have great potential for training computer vision models. The U
     \item \textbf{Autonomous Driving}: A Faster R-CNN model trained on 50,000--200,000 synthetic images outperformed a model trained on just 2,975 real images for object detection in driving \cite{r-cnn}.
 \end{itemize}
 
-\noindent Even though synthetic data has many benefits, it is not always better than real data. Sometimes, synthetic images can be too "perfect," which can cause overfitting— where a model performs well on the training data but struggles with unseen data. If they are unrealistic, they might not work well in real-life situations. It is important to balance how realistic and varied the synthetic data is for the best results \cite{nikolenko2021synthetic}.
+\noindent Even though synthetic data has many benefits, it is not always better than real data. Sometimes, synthetic images can be too "perfect," which can cause overfitting. This is where a model performs well on the training data but struggles with unseen data \cite{Ying_2019}. If they are unrealistic, they might not work well in real-life situations. It is important to balance how realistic and varied the synthetic data is for the best results \cite{nikolenko2021synthetic}.
 
 
 \section{Problem Description and Research Focus}
-
 Building effective computer vision models for maritime environments is a challenging task. While previous studies show promising results with synthetic data, many of these studies also highlight the difficulties of collecting real-world data. For maritime environments, like harbors, capturing enough diverse and high-quality data is difficult. It may require expensive equipment, such as infrared cameras used in the ferry project \cite{NTNUFerry}, as well as time-consuming manual labeling processes. This is where synthetic data can provide a potential solution. \\
 
 \noindent Synthetic data makes it easy to create diverse datasets quickly, without the manual work needed for real images \cite{nikolenko2021synthetic}. With these advantages, this project focuses on creating and testing synthetic data for harbor environments. The goal is to explore whether synthetic data can replace or enhance real-world data in developing reliable models for tasks like object detection and navigation.
 
 
 \subsection{Problem Description}
-The main goal is to create a computer vision model for the ReVolt autonomous vessel in a harbor environment. A computer vision model needs a large and diverse dataset to work well. However, collecting real-world data in different docking situations can be expensive and take a lot of time. How can synthetic data be made to effectively train a computer vision model for harbor environments? This report focuses on generating synthetic data for training. By creating synthetic images, the aim is to simulate realistic situations that can help train the model.  
+The main goal is to create a computer vision model for the ReVolt autonomous vessel operating in a harbor environment. Building such a model requires a large and diverse dataset, but collecting real-world data in near-shore environments is often expensive and time-consuming. This project focuses on how synthetic data can be effectively created for a computer vision model in harbor scenarios. By generating scalable and detailed synthetic images that simulate realistic maritime conditions, the aim is to produce an efficient and cost-effective dataset for tasks such as object detection, navigation and collision avoidance.
 
 \subsection{Research Questions}
 This project will try to answer the following questions:
@@ -68,7 +67,7 @@ The main objectives of this project are:
 
 \section{Structure of the Report}
 
-The thesis follows the IMRaD model (Introduction, Methods, Results, and Discussion). The \textit{Introduction} provides an overview of the challenges in autonomous docking, outlines the research objectives, and describes the structure of the report. The \textit{Theory} section discusses synthetic images, labeling techniques, and Unity's Perception package. The \textit{Method} explains the setup of a virtual environment in Unity, integration of 3D models, randomization techniques, and the use of AI tools. The \textit{Results} describe the dataset, its diversity, labeling accuracy, and provide visual examples of outputs. The \textit{Discussion} evaluates the realism of the dataset, addresses domain gap challenges, and identifies areas for improvement, such as asset quality and augmentation. Finally, the \textit{Conclusions} summarize the achievements of the project and suggest future directions.\\
+The thesis follows the IMRaD model (Introduction, Methods, Results and Discussion). The \textit{Introduction} provides an overview of the challenges in autonomous docking, outlines the research objectives and describes the structure of the report. The \textit{Theory} section discusses synthetic images, labeling techniques and Unity's Perception package. The \textit{Method} explains the setup of a virtual environment in Unity, integration of 3D models, randomization techniques and the use of AI tools. The \textit{Results} describe the dataset, its diversity, labeling accuracy and provide visual examples of outputs. The \textit{Discussion} evaluates the realism of the dataset, addresses domain gap challenges and identifies areas for improvement, such as asset quality and augmentation. Finally, the \textit{Conclusions} summarize the achievements of the project and suggest future directions.\\
 
 
 \noindent Appendices include links to the project's GitHub repositories.
