@@ -18,8 +18,6 @@ Randomization in synthetic data means adding variety to the dataset. It is impor
 
 \noindent Synthetic data allows for various types of randomization. Objects in a scene can change through transformations like rotation, scaling or color. Additionally, the background and environment can be modified, including factors such as weather and scene layout. Randomization can also be applied to the camera settings, such as adjusting the position, tilt or angle, to generate a variety of perspectives \cite{borkman2021unityperceptiongeneratesynthetic}.\\
 
-\noindent This flexibility allows for the automatic generation of unlimited, diverse training data without manually changing each scene. Randomization scripts make it easier and faster to create a wide range of scenarios, increasing the robustness of the computer vision model.\\
-
 \noindent Further details on the implementation of randomization in synthetic data generation will be explained in \ref{section:Implementation of Randomizers in Unity} and \ref{section:Integrated Randomizers}.
 
 
@@ -39,14 +37,14 @@ There are different ways to label objects in images, depending on the level of d
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{Figures/boundingbox.png}
+    \includegraphics[width=0.85\textwidth]{Figures/boundingbox.png}
     \caption{Illustration of bounding boxes, with rectangular regions used to localize objects.}
     \label{fig:image2}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{Figures/segmentation_2.png}
+    \includegraphics[width=0.85\textwidth]{Figures/segmentation_2.png}
     \caption{Visualization of segmentation, which divide the image into precise pixel-level regions.}
     \label{fig:image3}
 \end{figure}
